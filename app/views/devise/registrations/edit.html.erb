@@ -1,0 +1,50 @@
+<h2>Edit Profile</h2>
+<br>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <%= bootstrap_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }, layout: :block) do |f| %>
+        <%= devise_error_messages! %>
+
+        <div class="field modest-form">
+          <%= f.text_field :first_name, autofocus: true %>
+        </div>
+
+        <div class="field modest-form">
+          <%= f.text_field :last_name %>
+        </div>
+
+        <div class="field modest-form">
+          <%= f.email_field :email %>
+        </div>
+
+        <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+          <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+        <% end %>
+
+        <div class="field modest-form">
+          <%= f.label :new_password %> <i>- Leave blank if no change</i><br />
+          <%= f.password_field :password, hide_label: true, autocomplete: "off" %>
+        </div>
+
+        <div class="field modest-form">
+          <%= f.label :new_password_confirmation %> <i>- If changed</i><br />
+          <%= f.password_field :password_confirmation, hide_label: true, autocomplete: "off" %>
+        </div>
+
+        <div class="field modest-form">
+          <%= f.label :confirm_current_password %> <i>- For security</i><br />
+          <%= f.password_field :current_password, hide_label: true, autocomplete: "off" %>
+        </div>
+
+        <br>
+        <div class="actions">
+          <%= button_tag( :class => "btn btn-success") do %>
+            <i class="glyphicon glyphicon-ok"></i> Save Changes<% end %>
+        </div>
+      </div>
+  </div>
+  <%= link_to :back, class: 'btn btn-info btn-small' do %>
+    <i class="glyphicon glyphicon-arrow-left"></i> Back <% end %>
+</div>
+<% end %>

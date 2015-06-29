@@ -1,0 +1,98 @@
+<ul class="nav nav-tabs" role="tablist">
+  <li class="active"><%= link_to 'All Items', items_path %></li>
+  <li><%= link_to 'New Item', new_item_path %></li>
+</ul>
+
+<br>
+<br>
+
+<p>
+  <strong>Title:</strong>
+  <%= @item.title %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @item.user_id %>
+</p>
+
+<p class="small-top-date">
+  <strong>Created on:</strong>
+  <%= @item.created_at.strftime("%b %e, %y @ %l:%M %P") %>
+</p>
+
+<p class="normal-top-date">
+  <strong>Created on:</strong>
+  <%= @item.created_at.strftime("%A, %B %e, %Y @ %l:%M %P") %>
+</p>
+
+<p class="small-top-date">
+  <strong>Last updated:</strong>
+  <%= @item.updated_at.strftime("%b %e, %y @ %l:%M %P") %>
+</p>
+
+<p class="normal-top-date">
+  <strong>Last updated:</strong>
+  <%= @item.updated_at.strftime("%A, %B %e, %Y @ %l:%M %P") %>
+</p>
+
+<p>
+  <strong>Tags:</strong>
+  <%= @item.tags %>
+</p>
+
+<p>
+  <strong>Notes:</strong>
+  <%= @item.notes %>
+</p>
+
+<br>
+<%= link_to edit_item_path(@item), class: 'btn btn-warning btn-small' do %>
+  <i class="glyphicon glyphicon-pencil"></i> Edit Details <% end %>
+<br>
+
+<br>
+<h3>Entries in this tracked item:</h3>
+<br>
+
+<table class="table table-striped table-bordered table-hover table-responsive">
+  <thead>
+    <tr>
+      <th><i class="glyphicon glyphicon-time"></i> Date</th>
+      <th>Number</th>
+      <th>Text</th>
+      <th colspan="1"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @item.entries.each do |entry| %>
+      <tr>
+        <td class="tiny-date"><%= entry.created_at.strftime("%-m/%-d/%y %l:%M%P").chop %></td>
+        <td class="small-date"><%= entry.created_at.strftime("%-m/%-d/%y %l:%M%P") %></td>
+        <td class="medium-date shrink"><%= entry.created_at.strftime("%b %e, %y @ %l:%M %P") %></td>
+        <td class="large-date shrink"><%= entry.created_at.strftime("%a. %B %e, %Y @ %l:%M %P") %></td>
+        <td class="full-date shrink"><%= entry.created_at.strftime("%A, %B %e, %Y @ %l:%M %P") %></td>
+        <td class="expand"><%= entry.num_val %></td>
+        <td class="expand"><%= entry.text_val %></td>
+        <td class="shrink">
+        <!-- <td><%= link_to 'Show Info', entry, class: 'btn btn-primary btn-xs' %> -->
+        <%= link_to edit_entry_path(entry), class: 'btn btn-warning btn-xs' do %>
+          <i class="glyphicon glyphicon-pencil"></i> Edit Entry <% end %>
+
+        <%= link_to entry_path(entry), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs' do %>
+          <i class="glyphicon glyphicon-trash"></i> Delete Entry <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<% session[:current_item_id] = @item.id %>
+<%= link_to new_entry_path(:entry => @item), class: 'btn btn-success' do %>
+  <i class="glyphicon glyphicon-plus"></i> Log a New Entry <% end %>
+<br>
+<br>
+<%= link_to items_path, class: 'btn btn-info btn-small' do %>
+  <i class="glyphicon glyphicon-arrow-left"></i> Back to All Items <% end %>

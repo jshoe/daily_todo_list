@@ -1,0 +1,37 @@
+<br>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <%= bootstrap_form_for(@entry) do |f| %>
+        <% if @entry.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@entry.errors.count, "error") %> prohibited this entry from being saved:</h2>
+            <ul>
+            <% @entry.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+        <% end %>
+
+        <form class="form-horizontal">
+          <div class="field item-form">
+            <%= f.label 'Numerical value', class: 'control-label' %>
+            <%= f.text_field :num_val, hide_label: true, class: 'form-control' %>
+          </div>
+          <div class="field item-form">
+            <%= f.label 'Text value', hide_label: true, class: 'control-label' %>
+            <%= f.text_area :text_val, hide_label: true, class: 'form-control' %>
+          </div>
+          <div class="actions">
+            <%= button_tag( :class => "btn btn-success") do %>
+              <i class="glyphicon glyphicon-ok"></i> Save Changes<% end %>
+          </div>
+        </form>
+      <% end %>
+    </div>
+  </div>
+<%= link_to @entry.item, class: 'btn btn-info btn-small' do %>
+  <i class="glyphicon glyphicon-arrow-left"></i> Back to All Entries <% end %>
+</div>

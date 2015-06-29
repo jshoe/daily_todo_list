@@ -1,0 +1,40 @@
+<br>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+      <%= bootstrap_form_for(@item) do |f| %>
+        <% if @item.errors.any? %>
+          <div id="error_explanation">
+            <h2><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h2>
+            <ul>
+            <% @item.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+            </ul>
+          </div>
+      <% end %>
+
+      <form class="form-horizontal">
+        <div class="field item-form">
+          <%= f.text_field :title, class: 'form-control' %>
+        </div>
+        <div class="field item-form">
+          <%= f.text_area :tags, class: 'form-control' %>
+        </div>
+        <div class="field item-form">
+          <%= f.text_area :notes, class: 'form-control' %>
+        </div>
+        <div class="actions">
+          <%= button_tag( :class => "btn btn-success") do %>
+            <i class="glyphicon glyphicon-ok"></i> Save Changes<% end %>
+        </div>
+      </form>
+      <% end %>
+    </div>
+  </div>
+  <br>
+  <br>
+  <%= link_to items_path, class: 'btn btn-info btn-small' do %>
+    <i class="glyphicon glyphicon-arrow-left"></i> Back to All Items <% end %>
+</div>

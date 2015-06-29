@@ -1,0 +1,102 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+@import "bootstrap-sprockets"
+@import "bootstrap"
+@import "rails_bootstrap_forms"
+
+.btn-primary:visited , .btn-info:visited , .btn-danger:visited , .btn-success:visited , .btn-warning:visited
+  color: #FFF
+
+.tiny-date, .small-date , .medium-date , .large-date , .full-date , .small-top-date , .normal-top-date
+  display: none
+  visibility: hidden
+
+@media screen and ( max-width: 320px )
+  .tiny-date
+    display: table-cell
+    visibility: visible
+
+@media screen and ( min-width: 321px ) and ( max-width: 480px )
+  .small-date
+    display: table-cell
+    visibility: visible
+
+@media screen and ( min-width: 481px ) and ( max-width: 768px )
+  .medium-date
+    display: table-cell
+    visibility: visible
+
+@media screen and ( min-width: 769px ) and ( max-width: 1024px )
+  .large-date
+    display: table-cell
+    visibility: visible
+
+@media screen and ( min-width: 1025px )
+  .full-date
+    display: table-cell
+    visibility: visible
+
+@media screen and ( max-width: 480px )
+  .small-top-date
+    display: block
+    visibility: visible
+
+@media screen and ( min-width: 481px )
+  .normal-top-date
+    display: block
+    visibility: visible
+
+table td.shrink
+  white-space: nowrap
+
+table th.expand
+  width: 99%
+  white-space: nowrap
+
+table td.expand
+  width: 99%
+
+/*flash*/
+.alert-error
+  background-color: #f2dede
+  border-color: #eed3d7
+  color: #b94a48
+  text-align: left
+
+.alert-alert
+  background-color: #f2dede
+  border-color: #eed3d7
+  color: #b94a48
+  text-align: left
+
+.alert-success
+  background-color: #dff0d8
+  border-color: #d6e9c6
+  color: #468847
+  text-align: left
+
+.alert-notice
+  background-color: #dff0d8
+  border-color: #d6e9c6
+  color: #468847
+  text-align: left
+
+.modest-form
+  max-width: 350px
+
+.item-form
+  max-width: 600px
